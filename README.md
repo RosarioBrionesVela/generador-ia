@@ -124,7 +124,8 @@ python main.py
 ```
 
 ![Proyecto en terminal](assets/terminal.png)
-Proyecto ejecutandose en la terminal.
+
+**Figura 1. Proyecto ejecutandose en la terminal.
 
 ### Interfaz gráfica
 
@@ -133,13 +134,16 @@ python ui.py
 ```
 
 ![Interfaz de usuario](assets/ui.png)
-Interfaz gráfica completa antes de generar los datos.
+
+**Figura 2. Interfaz gráfica completa antes de generar los datos.
 
 ![Registros Generados](assets/registros_generados.png)
-Interfaz después de generar los registros.
+
+**Figura 3. Interfaz después de generar los registros.
 
 ![Registros Generados](assets/insercion_exitosa.png)
-Mensaje indicando que la inserción fue exitosa.
+
+**Figura 4. Mensaje indicando que la inserción fue exitosa.
 
 ---
 
