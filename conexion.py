@@ -1,20 +1,22 @@
 import mysql.connector
 
-def conectar():
+
+def conectar(host, puerto, usuario, password, database):
 
     try:
         conexion = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Contraseña123@",
-            database="generador_ia"
+            host=host,
+            port=puerto,
+            user=usuario,
+            password=password,
+            database=database
         )
 
         if conexion.is_connected():
-            print("✅ Conexión exitosa a MySQL.")
+            print("\n✅ Conexión establecida correctamente.\n")
             return conexion
 
     except mysql.connector.Error as error:
-        print("❌ Error de conexión:", error)
+        print(f"\n❌ Error de conexión: {error}\n")
 
     return None

@@ -1,7 +1,17 @@
 from conexion import conectar
 from generador import generar_registros
 from inserciones import insertar_registros
-from exportar import exportar_csv   
+from exportar import exportar_csv
+
+
+def linea():
+    print("═" * 60)
+
+
+def titulo(texto):
+    linea()
+    print(f" {texto.center(58)} ")
+    linea()
 
 
 def mostrar_tablas(cursor):
@@ -10,13 +20,13 @@ def mostrar_tablas(cursor):
     tablas = cursor.fetchall()
 
     if not tablas:
-        print("❌ No hay tablas.")
+        print("\n❌ No se encontraron tablas en la base de datos.")
         return []
 
-    print("\n===== TABLAS =====\n")
+    titulo("TABLAS DISPONIBLES")
 
-    for i, t in enumerate(tablas, 1):
-        print(f"{i}. {t[0]}")
+    for i, t in enumerate(tablas, start=1):
+        print(f" {i}. {t[0]}")
 
     return tablas
 
@@ -28,7 +38,10 @@ def obtener_estructura(cursor, tabla):
 
     campos = []
 
-    print("\n===== ESTRUCTURA =====\n")
+    titulo(f"ESTRUCTURA DE '{tabla}'")
+
+    print(f"{'Campo':20}{'Tipo':20}{'Llave'}")
+    print("-" * 60)
 
     for col in columnas:
 
@@ -42,16 +55,46 @@ def obtener_estructura(cursor, tabla):
 
         campos.append(campo)
 
-        print(f"{campo['nombre']} | {campo['tipo']} | {campo['key']}")
+        print(f"{campo['nombre']:20}{campo['tipo']:20}{campo['key']}")
 
     return campos
 
 
+def solicitar_conexion():
+
+    titulo("DATOS DE CONEXIÓN")
+
+    host = input("🌐 Host [localhost]: ").strip()
+    if host == "":
+        host = "localhost"
+
+    puerto = input("🔌 Puerto [3306]: ").strip()
+    if puerto == "":
+        puerto = "3306"
+
+    usuario = input("👤 Usuario: ").strip()
+    password = input("🔒 Contraseña: ")
+    database = input("🗄️ Base de datos: ").strip()
+
+    return host, int(puerto), usuario, password, database
+
+
 def main():
 
-    conexion = conectar()
+    titulo("GENERADOR INTELIGENTE DE INSERCIONES")
+
+    host, puerto, usuario, password, database = solicitar_conexion()
+
+    conexion = conectar(
+        host,
+        puerto,
+        usuario,
+        password,
+        database
+    )
 
     if not conexion:
+        print("❌ No fue posible establecer la conexión.")
         return
 
     cursor = conexion.cursor()
@@ -59,62 +102,85 @@ def main():
     tablas = mostrar_tablas(cursor)
 
     if not tablas:
+        cursor.close()
+        conexion.close()
         return
 
-    # VALIDAR TABLA
     while True:
         try:
-            op = int(input("\nSeleccione tabla: ")) - 1
+
+            op = int(input("\n📌 Seleccione una tabla: ")) - 1
 
             if op < 0 or op >= len(tablas):
-                print("❌ Opción inválida")
+                print("❌ Opción inválida.")
                 continue
+
             break
-        except:
-            print("❌ Número inválido")
+
+        except ValueError:
+            print("❌ Ingrese únicamente números.")
 
     tabla = tablas[op][0]
 
     campos = obtener_estructura(cursor, tabla)
 
-    # VALIDAR CANTIDAD
     while True:
+
         try:
-            n = int(input("\nCantidad de registros: "))
+
+            n = int(input("\n📝 ¿Cuántos registros desea generar?: "))
+
             if n <= 0:
-                print("❌ Mayor a 0")
+                print("❌ Debe ser mayor que cero.")
                 continue
+
             break
-        except:
-            print("❌ Número inválido")
+
+        except ValueError:
+            print("❌ Ingrese un número válido.")
+
+    print("\n⏳ Generando datos...")
 
     registros = generar_registros(campos, n)
 
-    print("\n===== VISTA PREVIA =====\n")
+    titulo("VISTA PREVIA")
+
+    for i, registro in enumerate(registros, start=1):
+
+        print(f"\nRegistro {i}")
+
+        for campo, valor in registro.items():
+            print(f"   {campo:<20}: {valor}")
 
     exportar_csv(registros)
 
-    for r in registros:
-        print(r)
+    print("\n✅ Los datos también fueron exportados a 'datos_generados.csv'.")
 
-    # CONFIRMACIÓN
     while True:
 
-        resp = input("\n¿Insertar? (S/N): ").upper()
+        resp = input("\n💾 ¿Desea insertar los registros en la base de datos? (S/N): ").upper()
 
         if resp in ["S", "N"]:
             break
 
-        print("❌ Solo S o N")
+        print("❌ Escriba únicamente S o N.")
 
     if resp == "S":
+
         insertar_registros(cursor, conexion, tabla, registros)
+
+        print("\n🎉 Proceso finalizado correctamente.")
+
     else:
-        print("❌ Cancelado")
+
+        print("\n⚠ Inserción cancelada por el usuario.")
 
     cursor.close()
     conexion.close()
-    print("\n🔒 Fin del programa")
+
+    linea()
+    print(" Gracias por utilizar el Generador Inteligente ")
+    linea()
 
 
 if __name__ == "__main__":
