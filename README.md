@@ -1,14 +1,30 @@
 # 🤖 Generador Inteligente de Inserciones para Bases de Datos
 
-Este proyecto es un sistema que genera e inserta datos automáticamente en tablas de bases de datos MySQL utilizando estructuras dinámicas y generación de datos realistas.
+<p align="center">
+  <img src="assets/ui.png" width="700">
+</p>
+
+En el desarrollo de aplicaciones es muy común necesitar una gran cantidad de información para realizar pruebas. Sin embargo, crear estos registros manualmente requiere mucho tiempo y aumenta la probabilidad de cometer errores.
+Con el objetivo de automatizar este proceso, se desarrolló una aplicación en Python capaz de conectarse a una base de datos MySQL, detectar automáticamente la estructura de una tabla y generar información compatible con los tipos de datos de cada columna.
+El sistema utiliza la librería Faker para crear datos realistas, como nombres, correos electrónicos, direcciones y números telefónicos. Además, incorpora una interfaz gráfica desarrollada con Tkinter para facilitar su uso y mejorar la experiencia del usuario.
+Este documento explica paso a paso cómo se desarrolló el proyecto, desde la creación de la base de datos hasta la implementación de la interfaz gráfica y las pruebas finales del sistema.
 
 ---
 
-## 🚀 Descripción
+## 🚀 Objetivo
 
-El sistema se conecta a una base de datos MySQL, detecta automáticamente la estructura de una tabla y genera registros compatibles con cada tipo de dato. Posteriormente, inserta los datos en la base de datos o permite visualizarlos antes de la inserción.
+### Objetivo general
 
-Incluye una interfaz gráfica amigable y generación de datos realistas usando Faker.
+Desarrollar una aplicación en Python que automatice la generación e inserción de datos de prueba en tablas de una base de datos MySQL, detectando automáticamente la estructura de las tablas y generando información compatible con cada tipo de dato.
+
+### Objetivos específicos
+
+- Establecer una conexión entre Python y MySQL. 
+- Detectar automáticamente las columnas de una tabla. 
+- Generar datos realistas mediante la librería Faker. 
+- Insertar automáticamente los registros generados. 
+- Implementar una interfaz gráfica amigable. 
+- Registrar errores y mostrar estadísticas del proceso. 
 
 ---
 
@@ -26,17 +42,25 @@ Incluye una interfaz gráfica amigable y generación de datos realistas usando F
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## 🛠️ Herramientas utilizadas
 
-- Python 3
-- MySQL
-- mysql-connector-python
-- Faker
-- Tkinter
+Durante el desarrollo del proyecto se utilizaron las siguientes herramientas:
+
+| Herramienta | Función |
+|-------------|---------|
+| Python 3 | Lenguaje de programación principal |
+| Visual Studio Code | Editor de código |
+| MySQL Server | Motor de base de datos |
+| MySQL Workbench | Administración de la base de datos |
+| mysql-connector-python | Conexión entre Python y MySQL |
+| Faker | Generación de datos realistas |
+| Tkinter | Desarrollo de la interfaz gráfica |
+| GitHub | Control de versiones y almacenamiento del proyecto |
 
 ---
 
 ## 📂 Estructura del proyecto
+```text
 GeneradorIA/
 │
 ├── main.py
@@ -47,20 +71,31 @@ GeneradorIA/
 ├── exportar.py
 │
 └── logs/
-└── errores.log
+    └── errores.log
+```
 
 ---
 
 ## 🧠 Uso de Inteligencia Artificial
 
-Este proyecto utiliza la librería Faker para generar datos realistas como nombres, correos, direcciones y teléfonos. Esto simula el comportamiento de una IA generadora de datos para pruebas de bases de datos.
+Aunque el proyecto no utiliza modelos de inteligencia artificial generativa, emplea la librería Faker para generar datos sintéticos y realistas de forma automática. Esto permite producir información coherente para realizar pruebas en bases de datos sin utilizar datos reales.
 
+## 📋 Requisitos
+
+- Python 3.11 o superior
+- MySQL Server
+- MySQL Workbench (opcional)
+- pip
+
+---
 
 ## ⚙️ Instalación
 
+```bash
 git clone https://github.com/tuusuario/generador-ia.git
 cd generador-ia
-pip install mysql-connector-python faker
+pip install -r requirements.txt
+```
 
 ## 🚀 Mejoras futuras
 
@@ -74,13 +109,44 @@ pip install mysql-connector-python faker
 
 Editar conexion.py:
 
+```python
 host="localhost"
 user="root"
 password="tu_contraseña"
 database="generador_ia"
+```
 
 ## ▶️ Ejecución
--Consola:
+### Consola:
+
+```bash
 python main.py
--Interfaz gráfica:
+```
+
+![Proyecto en terminal](assets/terminal.png)
+
+**Figura 1. Proyecto ejecutandose en la terminal.
+
+### Interfaz gráfica
+
+```bash
 python ui.py
+```
+
+![Interfaz de usuario](assets/ui.png)
+
+**Figura 2. Interfaz gráfica completa antes de generar los datos.
+
+![Registros Generados](assets/registros_generados.png)
+
+**Figura 3. Interfaz después de generar los registros.
+
+![Registros Generados](assets/insercion_exitosa.png)
+
+**Figura 4. Mensaje indicando que la inserción fue exitosa.
+
+---
+
+## 📄 Licencia
+
+Este proyecto fue desarrollado con fines académicos.
