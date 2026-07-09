@@ -1,7 +1,7 @@
 # 🤖 Generador Inteligente de Inserciones para Bases de Datos
 
 <p align="center">
-  <img src="assets/ui.png" width="700">
+  <img src="assets/Interfaz_Grafica.jpg" width="700">
 </p>
 
 En el desarrollo de aplicaciones es muy común necesitar una gran cantidad de información para realizar pruebas. Sin embargo, crear estos registros manualmente requiere mucho tiempo y aumenta la probabilidad de cometer errores.
@@ -123,7 +123,7 @@ database="generador_ia"
 python main.py
 ```
 
-![Proyecto en terminal](assets/Terminal.png)
+![Proyecto en terminal](assets/Terminal.jpg)
 
 **Figura 1. Proyecto ejecutandose en la terminal.
 
@@ -134,7 +134,7 @@ python main.py
 python ui.py
 ```
 
-![Interfaz de usuario](assets/Interfaz_Grafica.png)
+![Interfaz de usuario](assets/Interfaz_Grafica.jpg)
 
 **Figura 2. Interfaz grafica.
 
