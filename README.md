@@ -123,9 +123,10 @@ database="generador_ia"
 python main.py
 ```
 
-![Proyecto en terminal](assets/terminal.png)
+![Proyecto en terminal](assets/Terminal.png)
 
 **Figura 1. Proyecto ejecutandose en la terminal.
+
 
 ### Interfaz gráfica
 
@@ -133,17 +134,10 @@ python main.py
 python ui.py
 ```
 
-![Interfaz de usuario](assets/ui.png)
+![Interfaz de usuario](assets/Interfaz_Grafica.png)
 
-**Figura 2. Interfaz gráfica completa antes de generar los datos.
+**Figura 2. Interfaz grafica.
 
-![Registros Generados](assets/registros_generados.png)
-
-**Figura 3. Interfaz después de generar los registros.
-
-![Registros Generados](assets/insercion_exitosa.png)
-
-**Figura 4. Mensaje indicando que la inserción fue exitosa.
 
 ---
 
