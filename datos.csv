@@ -1,3 +1,6 @@
-nombre,apellido,edad,correo,pais,ciudad,direccion
-Luis,Vásquez,48,pachecomargarita@example.com,Benin,San Antonia los bajos,"Circunvalación Sur Acuña 593 153
-Nueva República Unida de Tanzanía, JAL 10800"
+nombre,apellido,edad,correo,telefono,fecha_registro
+Gerardo,Vela,24,casaresricardo@example.com,44967872787,2026-01-24
+Carlota,Carrasco,72,cortezvirginia@example.com,44909951066,2024-09-23
+Federico,Gonzales,24,rodriguezilse@example.org,44917967530,2026-04-14
+Guillermina,Velázquez,71,abigailvillarreal@example.net,44909738362,2025-01-26
+Alfonso,Carrillo,24,liliaurbina@example.net,44963220549,2024-11-19
